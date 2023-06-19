@@ -5,13 +5,10 @@ A Cross-chain Crowdfunding application built with Superfluid and Lens Protocol.
   <img src="https://user-images.githubusercontent.com/95926324/219892186-d51fed8f-aed4-4d2a-954a-c02cb5a05792.png" height="120" width="120" align="center" />
 </p>
 
-Deployed Contract's Address - 0xc17a907d751241d2f1f78802b1cf1f701349986a
-https://explorer.testnet.mantle.xyz/tx/0x47fe135bd8cb6d1de5f0586d82ba3c9495c34f6899d47133ee4ab23c20215e84
+Deployed Contract's Address - 0x0974ccB10568d07D531CAa3F00bf457F87a6E6b8
+https://mumbai.polygonscan.com/address/0x0974ccB10568d07D531CAa3F00bf457F87a6E6b8
 
 ERC 1155 NFT's - 0x31Fd8c44a1869C48D054d8431Fb8F62C746494EF will be dropped to some of the early supporters of the respective campaigns inorder to incentivise them.
-
-Ukraine Supporters NFT - https://explorer.testnet.mantle.xyz/tx/0x1c62dc14e3ae5633aacbac978bbc7a53262acf55e04266a22a78cc0a76e71ebb
-Claimed MAF NFT - https://explorer.testnet.mantle.xyz/tx/0xf75c673049e83253ca3b42da82f90e8029fdd4e6474e490333948b0659f4f8ca
 
 Integrating NFTs (Non-Fungible Tokens) in a crowdfunding dapp can provide a new and exciting way for backers to participate and support a project.
 The owner of the campaign can send ERC-1155 NFT's to some of the early supporters of the campaign thereby incentivising the backers to participate with greater zeal.

@@ -43,8 +43,7 @@ interface StateProviderProps {
 
 export const StateProvider = ({ children }: StateProviderProps) => {
   const { contract } = useContract(
-    "0xdA5E51354581Fbe42515F9ab2ea5af8B4D6d4b25"
-    // 0xc17a907d751241d2f1f78802b1cf1f701349986a contract deployed to mantle network
+    "0x0974ccB10568d07D531CAa3F00bf457F87a6E6b8"
     // contract address 0x8d72887163f8bD8A65649Ef4af37dcc21500e5A1 - gorerelli 2 
   );
 
