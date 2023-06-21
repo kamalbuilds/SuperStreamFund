@@ -21,7 +21,10 @@ import { useAppState } from "../context";
 import { calculateBarPercentage, daysLeft } from "../utils";
 import {CreateFlow} from "../components/superfluid/createFlow";
 import { AuthProvider, CHAIN } from '@arcana/auth';
-
+import Lens from "../components/Lens";
+import { WagmiConfig } from "wagmi";
+import SuperfluidWidget from '@superfluid-finance/widget';
+import superTokenList from "@superfluid-finance/tokenlist";
 
 export const CreateFundValidation = z.object({
   amount: z.number().min(0.0000001),
@@ -239,6 +242,7 @@ const auth = new AuthProvider(`${appAddress}`, { //required
             )}
           </div>
           <CreateFlow />
+          <Lens />
         </div>
       </div>
     </Container>

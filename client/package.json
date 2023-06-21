@@ -22,6 +22,8 @@
     "@pushprotocol/restapi": "^0.2.1",
     "@pushprotocol/uiweb": "^0.2.3",
     "@superfluid-finance/sdk-core": "^0.6.1",
+    "@superfluid-finance/tokenlist": "^1.2.0",
+    "@superfluid-finance/widget": "^0.0.8",
     "@tabler/icons-react": "^2.2.0",
     "@thirdweb-dev/react": "^3.9.1",
     "@thirdweb-dev/sdk": "^3.9.1",
@@ -35,7 +37,7 @@
     "react-dom": "^18.2.0",
     "react-hook-form": "^7.43.0",
     "react-router-dom": "^6.8.0",
-    "wagmi": "^0.11.5",
+    "wagmi": "^0.11.7",
     "zod": "^3.20.2"
   },
   "devDependencies": {
