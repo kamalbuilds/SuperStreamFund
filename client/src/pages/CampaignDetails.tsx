@@ -203,6 +203,7 @@ const auth = new AuthProvider(`${appAddress}`, { //required
             {!address ? (
               <Text>You need to connect your wallet to fund this campaign</Text>
             ) : (
+            
               <FundForm
                 submitText="Fund Campaign"
                 schema={CreateFundValidation}
@@ -237,9 +238,22 @@ const auth = new AuthProvider(`${appAddress}`, { //required
                   }
                 }}
               />
-              
-              
             )}
+            <div>
+                <WagmiConfig config={wagmiConfig}>
+                    <SuperfluidWidget
+                      {...data}
+                      tokenList={superTokenList}
+                      type="dialog"
+                      walletManager={walletManager}
+                    >
+                    {({ openModal }) => (
+                      <button onClick={() => openModal()}>Open Superfluid Widget</button>
+                    )}
+                    </SuperfluidWidget>
+                  </WagmiConfig>
+            </div>
+          
           </div>
           <CreateFlow />
           <Lens />

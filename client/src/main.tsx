@@ -33,8 +33,6 @@ const livepeerClient = createReactClient({
 });
 
 
-const ChainIdMantle = 5001;
-
 root.render(
   <LivepeerConfig client={livepeerClient}>
   <ThirdwebProvider  activeChain={Mumbai}>
