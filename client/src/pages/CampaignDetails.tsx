@@ -20,20 +20,14 @@ import { FundForm } from "../components/FundForm";
 import { useAppState } from "../context";
 import { calculateBarPercentage, daysLeft } from "../utils";
 import {CreateFlow} from "../components/superfluid/createFlow";
-import { AuthProvider, CHAIN } from '@arcana/auth';
 import Lens from "../components/Lens";
-import { WagmiConfig } from "wagmi";
 import SuperfluidWidget from '@superfluid-finance/widget';
 import superTokenList from "@superfluid-finance/tokenlist";
 import wdata from "../components/widget.json";
-import { wagmiClient } from "../utils/wagmi_client";
 import { useMemo , useState } from "react";
 import { Web3Modal, useWeb3Modal } from "@web3modal/react";
-import {
-  EthereumClient,
-  w3mConnectors,
-  w3mProvider,
-} from "@web3modal/ethereum";
+import { WagmiConfig } from "wagmi";
+import { projectId , ethereumClient } from "../utils/wagmi_client";
 
 export const CreateFundValidation = z.object({
   amount: z.number().min(0.0000001),
@@ -67,62 +61,6 @@ const CampaignDetails = () => {
 
   console.log({ data });
 
-// arcana auth code to sign transx
-const appAddress = '445007f942f9Ba718953094BbeeeeeB9484cAfd2'; //example
-const auth = new AuthProvider(`${appAddress}`, { //required
-  network: 'testnet', //defaults to 'testnet'
-  position: 'left', //defaults to right
-  theme: 'light', //defaults to dark
-  alwaysVisible: false, //defaults to true which is Full UI mode
-  chainConfig: {
-    chainId: CHAIN.POLYGON_MAINNET, //defaults to CHAIN.ETHEREUM_MAINNET
-    rpcUrl: 'https://polygon-rpc.com', //defaults to 'https://rpc.ankr.com/eth'
-  },
-})
-
-  async function sendTransaction() {
-    console.log("I am called");
-    setRequest('eth_sendTransaction')
-    const hash = await provider.request({
-      method: 'eth_sendTransaction',
-        params: [{
-        from,
-        gasPrice: 0,
-        to: '0xCF8D2Da12A032b3f3EaDC686AB18551D8fD6c132',
-        value: '0x0de0b6b3a7640000',
-      },],
-    })
-    console.log({ hash })
-  }
-
-  async function signTransaction() {
-    try {
-      provider = auth.provider
-      const connected = await auth.isLoggedIn()
-      console.log({ connected })
-      setHooks()
-    } catch (e) {
-      // Handle exception case
-      console.log("error",e);
-    }
-
-    const { sig } = await provider.request({
-      method: 'eth_signTransaction',
-      params: [
-        {
-          from, // sender account address
-          gasPrice: 0,
-          to: '0xCF8D2Da12A032b3f3EaDC686AB18551D8fD6c132', // receiver account address
-          value: '0x0de0b6b3a7640000',
-        },
-      ],
-    })
-    console.log({ sig })
-  }
-
-  signTransaction();
-
-// end of arcana auth code
 
   const typedState = {
     ...data,
@@ -139,19 +77,7 @@ const auth = new AuthProvider(`${appAddress}`, { //required
 
   const projectId = "bc20036f3357961ba887b57144d0791e";
 
-  const { publicClient } = configureChains(supportedNetworks, [
-    w3mProvider({ projectId }),
-  ]);
-  
-  const wagmiConfig = createConfig({
-    autoConnect: false,
-    connectors: w3mConnectors({
-      projectId,
-      chains: supportedNetworks,
-    }),
-    publicClient,
-  });
-  const ethereumClient = new EthereumClient(wagmiConfig, supportedNetworks);
+
   
 
   return (
@@ -245,7 +171,6 @@ const auth = new AuthProvider(`${appAddress}`, { //required
                 initialValues={{}}
                 onSubmit={async (values) => {
                   try {
-                    sendTransaction();
                     await donateCampaign([
                       typedState.id,
                       {
@@ -275,7 +200,6 @@ const auth = new AuthProvider(`${appAddress}`, { //required
               />
             )}
             <div className="my-8 mx-24">
-                <WagmiConfig client={wagmiClient}>
                     <SuperfluidWidget
                       {...wdata}
                       tokenList={superTokenList}
@@ -286,7 +210,7 @@ const auth = new AuthProvider(`${appAddress}`, { //required
                       <button onClick={() => openModal()} className="px-4 py-2 bg-blue-500 text-white font-semibold rounded-md hover:bg-blue-600 transition duration-300">Subscribe to the Campaign</button>
                     )}
                     </SuperfluidWidget>
-                  </WagmiConfig>
+                  <Web3Modal projectId={projectId} ethereumClient={ethereumClient} />
             </div>
           
           </div>

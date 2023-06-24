@@ -6,9 +6,10 @@ import "./index.css";
 import { createEmotionCache, MantineProvider } from "@mantine/core";
 import { NotificationsProvider } from "@mantine/notifications";
 import { StateProvider } from "./context";
-import { wagmiClient } from "./utils/wagmi_client";
-import { WagmiConfig } from "wagmi";
+// import { wagmiClient } from "./utils/wagmi_client";
+import {  wagmiConfig } from "./utils/wagmi_client";
 import {Mumbai} from "@thirdweb-dev/chains";
+import { WagmiConfig } from "wagmi";
 
 const root = ReactDOM.createRoot(document.getElementById("root") as Element);
 
@@ -36,7 +37,7 @@ const livepeerClient = createReactClient({
 root.render(
   <LivepeerConfig client={livepeerClient}>
   <ThirdwebProvider  activeChain={Mumbai}>
-    <WagmiConfig client={wagmiClient}>
+    <WagmiConfig config={wagmiConfig}>
       
       <MantineProvider
         emotionCache={myCache}

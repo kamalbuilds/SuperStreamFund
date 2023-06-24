@@ -1,26 +1,25 @@
-import { ArcanaConnector } from "@arcana/auth-wagmi";
+// @ts-nocheck
 import { celo, celoAlfajores, polygon, polygonMumbai } from "wagmi/chains";
-import { configureChains, Chain , Connector , createClient, goerli } from "wagmi";
+import { configureChains, Chain , Connector  } from "wagmi";
 import { publicProvider } from "wagmi/providers/public";
 import { InjectedConnector } from "wagmi/connectors/injected";
-export const connector = (chains: Chain[]) => {
-  return new ArcanaConnector({
-    chains,
-    options: {
-      appId: `9e0c6715d9ea7aab73535c8c359d8b45ac2587bc`,
-    },
-  });
-};
+import { goerli } from "wagmi/chains";
+import { createConfig } from "wagmi";
+import { EthereumClient, w3mConnectors, w3mProvider } from '@web3modal/ethereum'
+import { Web3Modal } from '@web3modal/react'
 
-const { chains, provider } = configureChains(
-  [polygon, polygonMumbai , goerli , celoAlfajores , celo],
-  [publicProvider()]
-);
+export const projectId = "bc20036f3357961ba887b57144d0791e";
 
-export const wagmiClient = createClient({
+const chains = [ goerli, polygon]
+
+const { publicClient } = configureChains(chains, [w3mProvider({ projectId })])
+
+export const wagmiConfig = createConfig({
   autoConnect: true,
-  connectors: [
-    new InjectedConnector({ chains }),
-  ],
-  provider,
-});
+  // @ts-ignore
+  connectors: w3mConnectors({ projectId, chains }),
+  publicClient
+})
+
+export const ethereumClient = new EthereumClient(wagmiConfig, chains)
+
