@@ -1,8 +1,8 @@
 import { ArcanaConnector } from "@arcana/auth-wagmi";
-import { polygon, polygonMumbai } from "wagmi/chains";
-import { configureChains, createClient, Chain } from "wagmi";
+import { celo, celoAlfajores, polygon, polygonMumbai } from "wagmi/chains";
+import { configureChains, Chain , Connector , createClient, goerli } from "wagmi";
 import { publicProvider } from "wagmi/providers/public";
-
+import { InjectedConnector } from "wagmi/connectors/injected";
 export const connector = (chains: Chain[]) => {
   return new ArcanaConnector({
     chains,
@@ -13,12 +13,14 @@ export const connector = (chains: Chain[]) => {
 };
 
 const { chains, provider } = configureChains(
-  [polygon, polygonMumbai],
+  [polygon, polygonMumbai , goerli , celoAlfajores , celo],
   [publicProvider()]
 );
 
 export const wagmiClient = createClient({
   autoConnect: true,
-  connectors: [connector(chains)],
+  connectors: [
+    new InjectedConnector({ chains }),
+  ],
   provider,
 });

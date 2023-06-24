@@ -25,6 +25,15 @@ import Lens from "../components/Lens";
 import { WagmiConfig } from "wagmi";
 import SuperfluidWidget from '@superfluid-finance/widget';
 import superTokenList from "@superfluid-finance/tokenlist";
+import wdata from "../components/widget.json";
+import { wagmiClient } from "../utils/wagmi_client";
+import { useMemo , useState } from "react";
+import { Web3Modal, useWeb3Modal } from "@web3modal/react";
+import {
+  EthereumClient,
+  w3mConnectors,
+  w3mProvider,
+} from "@web3modal/ethereum";
 
 export const CreateFundValidation = z.object({
   amount: z.number().min(0.0000001),
@@ -32,6 +41,14 @@ export const CreateFundValidation = z.object({
 
 const CampaignDetails = () => {
   const { id } = useParams();
+  const { open, isOpen } = useWeb3Modal();
+  const walletManager = useMemo(
+    () => ({
+      open,
+      isOpen,
+    }),
+    [open, isOpen]
+  );
 
   console.log({ id });
 
@@ -120,6 +137,23 @@ const auth = new AuthProvider(`${appAddress}`, { //required
     parseFloat(typedState.amountCollected)
   );
 
+  const projectId = "bc20036f3357961ba887b57144d0791e";
+
+  const { publicClient } = configureChains(supportedNetworks, [
+    w3mProvider({ projectId }),
+  ]);
+  
+  const wagmiConfig = createConfig({
+    autoConnect: false,
+    connectors: w3mConnectors({
+      projectId,
+      chains: supportedNetworks,
+    }),
+    publicClient,
+  });
+  const ethereumClient = new EthereumClient(wagmiConfig, supportedNetworks);
+  
+
   return (
     <Container>
       <Flex gap={5} justify="space-between">
@@ -196,6 +230,7 @@ const auth = new AuthProvider(`${appAddress}`, { //required
               <Text>No donators yet. Be the first one! </Text>
             )}
           </div>
+          <Lens />
         </div>
 
         <div>
@@ -239,16 +274,16 @@ const auth = new AuthProvider(`${appAddress}`, { //required
                 }}
               />
             )}
-            <div>
-                <WagmiConfig config={wagmiConfig}>
+            <div className="my-8 mx-24">
+                <WagmiConfig client={wagmiClient}>
                     <SuperfluidWidget
-                      {...data}
+                      {...wdata}
                       tokenList={superTokenList}
-                      type="dialog"
+                      type="drawer"
                       walletManager={walletManager}
                     >
                     {({ openModal }) => (
-                      <button onClick={() => openModal()}>Open Superfluid Widget</button>
+                      <button onClick={() => openModal()} className="px-4 py-2 bg-blue-500 text-white font-semibold rounded-md hover:bg-blue-600 transition duration-300">Subscribe to the Campaign</button>
                     )}
                     </SuperfluidWidget>
                   </WagmiConfig>
@@ -256,7 +291,6 @@ const auth = new AuthProvider(`${appAddress}`, { //required
           
           </div>
           <CreateFlow />
-          <Lens />
         </div>
       </div>
     </Container>

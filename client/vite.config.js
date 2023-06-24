@@ -8,4 +8,9 @@ export default defineConfig({
     // global: "globalThis",
     "process.env": {},
   },
+  optimizeDeps: {
+    esbuildOptions: {
+      target: ['es2020', 'safari14'],
+    },
+  },
 });

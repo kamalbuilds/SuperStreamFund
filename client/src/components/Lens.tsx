@@ -190,7 +190,7 @@ export default function Lens() {
 
   return (
     <main className="flex flex-col justify-between p-24">
-      <h1>Superfluid X Lens</h1>
+      <h1>Followers of the Project</h1>
       {
         !currentAccount && (
           <button  onClick={connectWallet}
@@ -236,7 +236,7 @@ export default function Lens() {
           <b>${flowRateDisplay !== " " ? flowRateDisplay : 0}</b> Maticx/month
         </p>
       </div>
-      <div className="mt-3 mb-3">
+      <div className="mt-3 mb-3 flex">
         <button
         onClick={() => setViewType('base-followers')}
         className={`${!topFollowers ? 'bg-green-400' : 'bg-gray-200'} py-2 px-10 text-black`}>
