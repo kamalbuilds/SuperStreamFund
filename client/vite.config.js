@@ -5,12 +5,12 @@ import { defineConfig } from "vite";
 export default defineConfig({
   plugins: [react()],
   define: {
-    global: "globalThis",
+    // global: "globalThis",
     "process.env": {},
   },
   optimizeDeps: {
     esbuildOptions: {
-      target: ['es2020', 'safari14'],
+      target: ['es2021'],
     },
   },
 });
