@@ -1,4 +1,4 @@
-# 🌟📝 SuperStreamFund 
+# 🌟SuperStreamFund 📝
 Cross-chain Crowdfunding Application built with Superfluid and Lens Protocol 🌐💰
 
 SuperStreamFund is an innovative crowdfunding application that leverages the power of Superfluid and the Lens Protocol to revolutionize the way campaigns are funded and supported. 🚀🔗
@@ -38,9 +38,6 @@ SuperStreamFund tackles several key challenges in the crowdfunding space:
 e84.png)
 ![Push Notifications and Chat Messaging](https://user-images.githubusercontent.com/95926324/219762719-ea46321c-5f5a-4fe2-980e-61f4fba7b59e.png)
 
-<p align="center">
-  <img src="https://user-images.githubusercontent.com/95926324/219763839-bd57ec8c-98a3-4937-96b3-c4724c8d63e0.png"  />
-</p>
 
 🌐 Join SuperStreamFund now and become part of a vibrant crowdfunding community that embraces innovation, trust, and continuous progress. Together, let's empower campaigns and support the projects that make a difference! 🌍🤝🚀
 
