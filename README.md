@@ -33,9 +33,7 @@ SuperStreamFund tackles several key challenges in the crowdfunding space:
 ![Fund the campaign](https://user-images.githubusercontent.com/95926324/219901968-fffec84e-2561-4c02-8a3f-052362aaf56a.png)
 ![Stream Money](https://user-images.githubusercontent.com/95926324/219885034-6da65b45-c8e7-4397-96e0-b95884a8d405.png)
 ![Money Streams](https://user-images.githubusercontent.com/95926324/219885338-0855fb2b-31ef-4dad-b268-15e90a559c9f.png)
-![Market Prices](https://user-images.githubusercontent.com/95926324/219902105-5bf0e524-d464-46f8-b9f9-7d874e776
-
-e84.png)
+![Market Prices](https://user-images.githubusercontent.com/95926324/219902105-5bf0e524-d464-46f8-b9f9-7d874e776e84.png)
 ![Push Notifications and Chat Messaging](https://user-images.githubusercontent.com/95926324/219762719-ea46321c-5f5a-4fe2-980e-61f4fba7b59e.png)
 
 

@@ -8,9 +8,21 @@ export default defineConfig({
     // global: "globalThis",
     "process.env": {},
   },
-  optimizeDeps: {
+  optimizeDeps: { // 👈 optimizedeps
     esbuildOptions: {
-      target: ['es2021'],
+      target: "esnext", 
+      // Node.js global to browser globalThis
+      define: {
+        global: 'globalThis'
+      },
+      supported: { 
+        bigint: true 
+      },
+    }
+  }, 
+
+
+    build: {
+      target: ["esnext"], // 👈 build.target
     },
-  },
 });
